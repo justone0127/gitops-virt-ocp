@@ -6,5 +6,5 @@ metadata:
 spec:
   source:
     registry:
-      url: "docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-748"
+      url: "image-registry.openshift-image-registry.svc:5000/openshift-virtualization-os-images/rhel9-guest:latest"
       pullMethod: node
