@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
 - base-vm-import-source.yaml
+- base-vm-import-source-2.yaml
 - dev/
 - prod/ 

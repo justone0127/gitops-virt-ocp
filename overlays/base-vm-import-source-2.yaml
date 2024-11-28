@@ -1,10 +1,11 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: VolumeImportSource
 metadata:
-  name: base-vm-import-source
+  name: base-vm-import-source-2
   namespace: openshift-virtualization-os-images
 spec:
   source:
     registry:
-      url: "docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-748"
+#      url: "docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-748"
+      imageStream: 'rhel9-guest:latest'
       pullMethod: node
