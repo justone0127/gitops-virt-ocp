@@ -6,52 +6,65 @@ metadata:
   name: base-vm
   namespace: beehive-virtual-machines
 spec:    
-    running: false
-    template:
-      metadata:
-        labels:
-          kubevirt.io/domain: base-vm
-      spec:
-        domain:
-          cpu:
-            cores: 1
-            sockets: 2
-            threads: 1
-          memory:
-            guest: 2048M
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 2Gi
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: base-vm-disk-2
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
+  running: false
+  dataVolumeTemplates:
+  - metadata:
+      creationTimestamp: null
+      name: rhel9 
+    spec:
+      sourceRef:
+        kind: DataSource
+        name: rhel-dv
+        namespace: openshift-virtualization-os-images
+      storage:
+        resources:
+          requests:
+            storage: 10Gi   
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: base-vm
+    spec:
+      domain:
+        cpu:
+          cores: 1
+          sockets: 2
+          threads: 1
+        memory:
+          guest: 2048M
+        devices:
+          disks:
+          - disk:
+              bus: virtio
+            name: vm-rootdisk
+          - disk:
+              bus: virtio
+            name: cloudinitdisk
+          interfaces:
+          - masquerade: {}
+            name: default
+          rng: {}
+        features:
+          smm:
+            enabled: true
+        firmware:
+          bootloader:
+            efi: {}
+        resources:
+          requests:
+            memory: 2Gi
+      evictionStrategy: LiveMigrate
+      networks:
+      - name: default
+        pod: {}
+      volumes:
+      - dataVolume:
+          name: rhel-dv
+        name: vm-rootdisk
+      - cloudInitNoCloud:
+          userData: |-
+            #cloud-config
+            user: cloud-user
+            password: 'redhat1234' 
+            chpasswd: { expire: False }
+        name: cloudinitdisk
