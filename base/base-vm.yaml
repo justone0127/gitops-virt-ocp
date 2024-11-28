@@ -46,7 +46,7 @@ spec:
           pod: {}
         volumes:
         - persistentVolumeClaim:
-              claimName: base-vm-disk
+              claimName: base-vm-disk-2
           name: vm-rootdisk
         - cloudInitNoCloud:
             userData: |-
