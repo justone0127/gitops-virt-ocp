@@ -1,3 +1,4 @@
+# Change PVC claimname based on vm name
 nameReference:
   - kind: DataVolume
     version: v1
