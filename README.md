@@ -1,4 +1,4 @@
-# This repository is a companion to the Learning Path for using GitOps with OpenShift Virtualization. While it is designed specifically for following along, much of the content should be usable elsewhere with some customization. A brief rundown of the directory structure follows.
+# for CNDW 2024 demo
 
 
 Base: Contains the generic yaml files that will provide the basis for the building of our virtual machines.
