@@ -1,4 +1,4 @@
-# for CNDW 2024 dem
+# for CNDW 2024 demo
 
 
 Base: Contains the generic yaml files that will provide the basis for the building of our virtual machines.
