@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: base-vm-disk
-  namespace: beehive-virtual-machines
+  namespace: test
 spec:
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
